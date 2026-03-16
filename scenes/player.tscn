@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://eo2wwiyqek3d"]
+[gd_scene format=3 uid="uid://eo2wwiyqek3d"]
 
 [ext_resource type="Texture2D" uid="uid://frvbnx545q8w" path="res://assets/sprites/knight.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://bbbgmlbbms06k" path="res://scripts/player.gd" id="1_g2els"]
@@ -171,16 +171,20 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_fjrip"]
 radius = 5.0990195
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=1020253053]
 collision_layer = 2
 script = ExtResource("1_g2els")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1914813049]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
 animation = &"jump"
 autoplay = "Idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1006073450]
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_fjrip")
+
+[node name="CoyoteTime" type="Timer" parent="." unique_id=1129451291]
+wait_time = 0.15
+one_shot = true
