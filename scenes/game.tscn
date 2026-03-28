@@ -1,7 +1,9 @@
-[gd_scene load_steps=19 format=4 uid="uid://bs41p1j01u1ka"]
+[gd_scene load_steps=21 format=4 uid="uid://bs41p1j01u1ka"]
 
 [ext_resource type="Script" uid="uid://ca8f3lynyy7m1" path="res://scripts/game_manager.gd" id="1_gee14"]
 [ext_resource type="PackedScene" uid="uid://eo2wwiyqek3d" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://cm7qxxhobay1b" path="res://scripts/game.gd" id="1_vtaks"]
+[ext_resource type="PackedScene" uid="uid://cj2cv1sfsh0sv" path="res://scenes/fade_transition.tscn" id="2_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://bmwlaxhvnv70b" path="res://assets/sprites/world_tileset.png" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://3pc0u3j3oxra" path="res://scenes/platform.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://bbdcruaj16vxa" path="res://scenes/coin.tscn" id="4_lbhrr"]
@@ -182,6 +184,21 @@ sources/0 = SubResource("TileSetAtlasSource_lnu2h")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p57ef"]
 
+[sub_resource type="Animation" id="Animation_vtaks"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(131, -106)]
+}
+
 [sub_resource type="Animation" id="Animation_0tnpc"]
 resource_name = "move"
 length = 4.0
@@ -199,7 +216,13 @@ tracks/0/keys = {
 "values": [Vector2(131, -106), Vector2(260, -106), Vector2(131, -106)]
 }
 
-[sub_resource type="Animation" id="Animation_vtaks"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vtaks"]
+_data = {
+&"RESET": SubResource("Animation_vtaks"),
+&"move": SubResource("Animation_0tnpc")
+}
+
+[sub_resource type="Animation" id="Animation_dinhu"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -211,13 +234,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(131, -106)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vtaks"]
-_data = {
-&"RESET": SubResource("Animation_vtaks"),
-&"move": SubResource("Animation_0tnpc")
+"values": [Vector2(419, 69)]
 }
 
 [sub_resource type="Animation" id="Animation_kvpfn"]
@@ -237,21 +254,6 @@ tracks/0/keys = {
 "values": [Vector2(419, 69), Vector2(531, 69), Vector2(419, 69)]
 }
 
-[sub_resource type="Animation" id="Animation_dinhu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(419, 69)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kvuet"]
 _data = {
 &"RESET": SubResource("Animation_dinhu"),
@@ -259,6 +261,14 @@ _data = {
 }
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_vtaks")
+metadata/_edit_lock_ = true
+
+[node name="Fade_Transition" parent="." instance=ExtResource("2_kvpfn")]
+offset_left = -631.0
+offset_top = -373.0
+offset_right = 2241.0
+offset_bottom = 1035.0
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true

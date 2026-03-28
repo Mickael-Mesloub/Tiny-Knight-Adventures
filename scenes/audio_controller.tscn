@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt4nv220r7o40"]
+
+[ext_resource type="Script" uid="uid://cl00n5x1vgeis" path="res://scripts/audio_controller.gd" id="1_41o6r"]
+[ext_resource type="AudioStream" uid="uid://b18q65e6hxdyd" path="res://assets/music/02. We Got the Moves.mp3" id="2_cedxo"]
+[ext_resource type="AudioStream" uid="uid://dwq351qy5xe8" path="res://assets/music/07. Parasite.mp3" id="3_cedxo"]
+
+[node name="AudioController" type="Node"]
+script = ExtResource("1_41o6r")
+
+[node name="bg_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_cedxo")
+
+[node name="main_menu_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_cedxo")

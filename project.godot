@@ -15,13 +15,13 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Knight-2DPlatformer"
-run/main_scene="uid://bs41p1j01u1ka"
+run/main_scene="uid://clxbx2aisov2x"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Music="*res://scenes/music.tscn"
+AudioController="*res://scenes/audio_controller.tscn"
 
 [input]
 

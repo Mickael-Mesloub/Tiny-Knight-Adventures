@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://clxbx2aisov2x"]
+
+[ext_resource type="Script" uid="uid://7a267rd3mpcm" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="PackedScene" uid="uid://cj2cv1sfsh0sv" path="res://scenes/fade_transition.tscn" id="2_ekxnf"]
+[ext_resource type="FontFile" uid="uid://cpovtmc0me03i" path="res://assets/fonts/PixelOperator8.ttf" id="3_bqqt6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bqqt6"]
+font = ExtResource("3_bqqt6")
+font_size = 48
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_l6cm7")
+
+[node name="Fade_Transition" parent="." instance=ExtResource("2_ekxnf")]
+visible = false
+
+[node name="Fade_timer" type="Timer" parent="Fade_Transition"]
+wait_time = 1.5
+
+[node name="Button Manager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Start" type="Button" parent="Button Manager"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -50.0
+offset_right = 200.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_bqqt6")
+theme_override_font_sizes/font_size = 40
+text = "Start game"
+
+[node name="Quit" type="Button" parent="Button Manager"]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 438.0
+offset_right = 776.0
+offset_bottom = 538.0
+theme_override_fonts/font = ExtResource("3_bqqt6")
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+
+[node name="Button3" type="Button" parent="Button Manager"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 141.0
+offset_top = 122.0
+offset_right = 1065.0
+offset_bottom = 189.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Tiny Kinght's Adventures"
+label_settings = SubResource("LabelSettings_bqqt6")
+
+[connection signal="timeout" from="Fade_Transition/Fade_timer" to="." method="_on_fade_timer_timeout"]
+[connection signal="pressed" from="Button Manager/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Button Manager/Quit" to="." method="_on_quit_pressed"]
