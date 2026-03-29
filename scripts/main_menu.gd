@@ -1,4 +1,6 @@
-extends Node2D
+extends Control
+
+enum ButtonType { START }
 
 var button_type = null
 
@@ -6,8 +8,8 @@ var button_type = null
 func _ready() -> void:
 	AudioController.play_menu_music()
 
-func _on_start_pressed() -> void:
-	button_type = "start"
+func _on_start_button_pressed() -> void:
+	button_type = ButtonType.START
 	$Fade_Transition.show()
 	$Fade_Transition/Fade_timer.start()
 	$Fade_Transition/AnimationPlayer.play("Fade_in")
@@ -15,10 +17,10 @@ func _on_start_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
 
 
-func _on_quit_pressed() -> void:
+func _on_exit_button_pressed() -> void:
 	get_tree().quit()
 
 
 func _on_fade_timer_timeout() -> void:
-	if button_type == "start":
+	if button_type == ButtonType.START:
 		get_tree().change_scene_to_file("res://scenes/game.tscn")

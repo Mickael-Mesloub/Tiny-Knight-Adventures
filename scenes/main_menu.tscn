@@ -1,75 +1,144 @@
-[gd_scene load_steps=5 format=3 uid="uid://clxbx2aisov2x"]
+[gd_scene load_steps=10 format=3 uid="uid://4vol2anctb3s"]
 
-[ext_resource type="Script" uid="uid://7a267rd3mpcm" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://bq5j0kmj6hbit" path="res://scripts/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="PackedScene" uid="uid://cj2cv1sfsh0sv" path="res://scenes/fade_transition.tscn" id="2_ekxnf"]
-[ext_resource type="FontFile" uid="uid://cpovtmc0me03i" path="res://assets/fonts/PixelOperator8.ttf" id="3_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://dik52b4tja3ba" path="res://assets/images/tka_background.jpg" id="3_bqqt6"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_bqqt6"]
-font = ExtResource("3_bqqt6")
-font_size = 48
+[sub_resource type="SystemFont" id="SystemFont_lti8b"]
+font_names = PackedStringArray("American Typewriter")
 
-[node name="MainMenu" type="Node2D"]
+[sub_resource type="SystemFont" id="SystemFont_ouk20"]
+font_names = PackedStringArray("American Typewriter")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lti8b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ouk20"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lti8b"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mae5d"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[node name="Main_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_l6cm7")
 
 [node name="Fade_Transition" parent="." instance=ExtResource("2_ekxnf")]
-visible = false
+layout_mode = 0
 
 [node name="Fade_timer" type="Timer" parent="Fade_Transition"]
 wait_time = 1.5
 
-[node name="Button Manager" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-
-[node name="Start" type="Button" parent="Button Manager"]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -50.0
-offset_right = 200.0
-offset_bottom = 50.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_bqqt6")
-theme_override_font_sizes/font_size = 40
-text = "Start game"
+texture = ExtResource("3_bqqt6")
 
-[node name="Quit" type="Button" parent="Button Manager"]
-layout_mode = 0
-offset_left = 376.0
-offset_top = 438.0
-offset_right = 776.0
-offset_bottom = 538.0
-theme_override_fonts/font = ExtResource("3_bqqt6")
-theme_override_font_sizes/font_size = 40
-text = "Quit"
-
-[node name="Button3" type="Button" parent="Button Manager"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-
-[node name="Label" type="Label" parent="."]
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 141.0
-offset_top = 122.0
-offset_right = 1065.0
-offset_bottom = 189.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
-text = "Tiny Kinght's Adventures"
-label_settings = SubResource("LabelSettings_bqqt6")
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
 
-[connection signal="timeout" from="Fade_Transition/Fade_timer" to="." method="_on_fade_timer_timeout"]
-[connection signal="pressed" from="Button Manager/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Button Manager/Quit" to="." method="_on_quit_pressed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Separator" type="Control" parent="TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.41440016, 0.7529566, 0.5542642, 1)
+theme_override_colors/font_shadow_color = Color(0.14117648, 0.30980393, 0.21176471, 1)
+theme_override_colors/font_outline_color = Color(0.14117648, 0.30980393, 0.21176471, 1)
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = SubResource("SystemFont_lti8b")
+theme_override_font_sizes/font_size = 64
+text = "TINY KNIGHT'S
+ ADVENTURES"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Separator2" type="Control" parent="TextureRect/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator3" type="Control" parent="TextureRect/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator4" type="Control" parent="TextureRect/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Separator5" type="Control" parent="TextureRect/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Start_Button" type="Button" parent="TextureRect/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8666667, 0.8666667, 0.8666667, 1)
+theme_override_colors/font_focus_color = Color(0.8666667, 0.8666667, 0.8666667, 1)
+theme_override_colors/font_pressed_color = Color(0.41568628, 0.7529412, 0.5529412, 1)
+theme_override_colors/font_hover_color = Color(0.41568628, 0.7529412, 0.5529412, 1)
+theme_override_colors/font_outline_color = Color(0.14117648, 0.30980393, 0.21176471, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = SubResource("SystemFont_ouk20")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lti8b")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ouk20")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lti8b")
+theme_override_styles/focus = SubResource("StyleBoxFlat_mae5d")
+text = "START GAME
+"
+
+[node name="Exit_Button" type="Button" parent="TextureRect/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8666667, 0.8666667, 0.8666667, 1)
+theme_override_colors/font_focus_color = Color(0.8666667, 0.8666667, 0.8666667, 1)
+theme_override_colors/font_pressed_color = Color(0.41568628, 0.7529412, 0.5529412, 1)
+theme_override_colors/font_hover_color = Color(0.41568628, 0.7529412, 0.5529412, 1)
+theme_override_colors/font_outline_color = Color(0.14117648, 0.30980393, 0.21176471, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = SubResource("SystemFont_ouk20")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lti8b")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ouk20")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lti8b")
+theme_override_styles/focus = SubResource("StyleBoxFlat_mae5d")
+text = "EXIT GAME
+"
+
+[connection signal="pressed" from="TextureRect/MarginContainer/HBoxContainer/VBoxContainer/Start_Button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer/HBoxContainer/VBoxContainer/Exit_Button" to="." method="_on_exit_button_pressed"]
